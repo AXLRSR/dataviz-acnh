@@ -5,7 +5,7 @@
       <img src="@/assets/icn-nook.svg" alt="">
     </div>
     <div class="status-bar__center">
-      <span class="status-bar__time">8:15 PM</span>
+      <span class="status-bar__time" v-if="this.hours">{{ hours }}:{{ minutes }} {{ ampm }}</span>
     </div>
     <div class="status-bar__right">
       <img src="@/assets/icn-location.svg" alt="">
@@ -15,7 +15,33 @@
 
 <script>
 export default {
+  data() {
+    return {
+      hours: null,
+      minutes: null,
+      ampm: null
+    }
+  },
+  mounted() {
+    this.showTime()
+  },
+  methods: {
+    showTime() {
+      setInterval(() => {
+        const now = new Date()
+        var hours = now.getHours()
+        var minutes = now.getMinutes()
+        var ampm = hours >= 12 ? 'pm' : 'am'
+        hours = hours % 12
+        hours = hours ? hours : 12
+        minutes = minutes < 10 ? '0'+minutes : minutes
 
+        this.hours = hours
+        this.minutes = minutes
+        this.ampm = ampm
+      }, 1000)
+    }
+  }
 }
 </script>
 
@@ -48,6 +74,9 @@ export default {
     img {
       height: 70%;
     }
+  }
+  &__time {
+    text-transform: uppercase;
   }
 }
 </style>
