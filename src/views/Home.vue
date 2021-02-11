@@ -1,6 +1,6 @@
 <template>
   <div class="screen home">
-    <h1>Bienvenue !</h1>
+    <h1>Welcome!</h1>
     <div class="home__grid">
       <div class="home__item">
         <router-link :to="{ name: 'Fish' }" class="home__link">
