@@ -3,9 +3,33 @@
     <h1>Bienvenue !</h1>
     <div class="home__grid">
       <div class="home__item">
+        <router-link :to="{ name: 'Fish' }" class="home__link">
+          <div class="home__link__icon">
+            <img src="@/assets/app-icons/fish.png" alt="Fish">
+          </div>
+          <span class="home__link__title">Fish</span>
+        </router-link>
+      </div>
+      <div class="home__item">
+        <router-link :to="{ name: 'Bugs' }" class="home__link">
+          <div class="home__link__icon">
+            <img src="@/assets/app-icons/bugs.png" alt="Bugs">
+          </div>
+          <span class="home__link__title">Bugs</span>
+        </router-link>
+      </div>
+      <div class="home__item">
+        <router-link :to="{ name: 'Villagers' }" class="home__link">
+          <div class="home__link__icon">
+            <img src="@/assets/app-icons/villagers.png" alt="Villagers">
+          </div>
+          <span class="home__link__title">Villagers</span>
+        </router-link>
+      </div>
+      <div class="home__item">
         <router-link :to="{ name: 'About' }" class="home__link">
           <div class="home__link__icon">
-            <img src="@/assets/okpng-icons/nookwallet.png" alt="About">
+            <img src="@/assets/app-icons/nookwallet.png" alt="About">
           </div>
           <span class="home__link__title">About</span>
         </router-link>

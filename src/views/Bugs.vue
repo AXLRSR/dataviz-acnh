@@ -1,6 +1,6 @@
 <template>
-  <div class="screen about">
-    <AppTitle title="About" />
+  <div class="screen bugs">
+    <AppTitle title="Bugs" />
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
 <style lang="scss">
 @import '@/assets/scss/_variables.scss';
 
-.about {
-  background: $color-green-light;
+.bugs {
+  background: $color-pink-light;
 }
 </style>
