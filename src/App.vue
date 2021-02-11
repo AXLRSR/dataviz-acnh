@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import StatusBar from './components/StatusBar'
+import StatusBar from '@/components/StatusBar'
 
 export default {
   components: { StatusBar }
