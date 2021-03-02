@@ -49,6 +49,7 @@ export default {
         const bugs = map(data, value => {
           return {
             name: get(value, 'name.name-USen'),
+            icon: get(value, 'icon_uri'),
             location: this.sortLocation(get(value, 'availability.location', '')),
             rarity: get(value, 'availability.rarity')
           }
@@ -56,7 +57,7 @@ export default {
 
         const location = map(groupBy(bugs, 'location'), (value, key) => ({
           key,
-          bugs: value,
+          item: value,
           total: value.length,
           percentage: (value.length * 100) / bugs.length
         }))

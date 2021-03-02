@@ -31,6 +31,7 @@ export default {
         const fish = map(data, value => {
           return {
             name: get(value, 'name.name-USen'),
+            icon: get(value, 'icon_uri'),
             location: nth(split(get(value, 'availability.location', ''), ' '), 0),
             rarity: get(value, 'availability.rarity')
           }
@@ -38,7 +39,7 @@ export default {
 
         const location = map(groupBy(fish, 'location'), (value, key) => ({
           key,
-          fish: value,
+          item: value,
           total: value.length,
           percentage: (value.length * 100) / fish.length
         }))
