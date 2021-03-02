@@ -53,6 +53,7 @@ export default {
   opacity: $opacity-low;
   display: flex;
   position: absolute;
+  z-index: 1;
   width: calc(100% - 4rem);
   margin: 2rem 2rem;
   &__center, &__left, &__right {
