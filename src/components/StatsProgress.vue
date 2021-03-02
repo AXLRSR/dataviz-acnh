@@ -38,9 +38,6 @@ export default {
       }
       this.display[key] = !this.display[key]
     }
-  },
-  updated() {
-    console.log(this.stats)
   }
 }
 </script>
