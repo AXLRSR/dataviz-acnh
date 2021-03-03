@@ -1,8 +1,10 @@
 <template>
   <div class="screen home">
-    <h1>Welcome!</h1>
-    <div class="home__grid">
-      <div class="home__item">
+    <transition name="title" appear>
+      <h1>Welcome!</h1>
+    </transition>
+    <transition-group tag="div" class="home__grid" name="apps" appear>
+      <div class="home__item" key="fish">
         <router-link :to="{ name: 'Fish' }" class="home__link">
           <div class="home__link__icon">
             <img src="@/assets/app-icons/fish.png" alt="Fish">
@@ -10,7 +12,7 @@
           <span class="home__link__title">Fish</span>
         </router-link>
       </div>
-      <div class="home__item">
+      <div class="home__item" key="bugs">
         <router-link :to="{ name: 'Bugs' }" class="home__link">
           <div class="home__link__icon">
             <img src="@/assets/app-icons/bugs.png" alt="Bugs">
@@ -18,7 +20,7 @@
           <span class="home__link__title">Bugs</span>
         </router-link>
       </div>
-      <div class="home__item">
+      <div class="home__item" key="villagers">
         <router-link :to="{ name: 'Villagers' }" class="home__link">
           <div class="home__link__icon">
             <img src="@/assets/app-icons/villagers.png" alt="Villagers">
@@ -26,7 +28,7 @@
           <span class="home__link__title">Villagers</span>
         </router-link>
       </div>
-      <div class="home__item">
+      <div class="home__item" key="about">
         <router-link :to="{ name: 'About' }" class="home__link">
           <div class="home__link__icon">
             <img src="@/assets/app-icons/nookwallet.png" alt="About">
@@ -34,7 +36,7 @@
           <span class="home__link__title">About</span>
         </router-link>
       </div>
-    </div>
+    </transition-group>
   </div>
 </template>
 
@@ -83,5 +85,17 @@ export default {
       color: $color-text;
     }
   }
+}
+
+.apps-enter-from {
+  opacity: 0;
+  transform: scale(.2);
+}
+.apps-enter-to {
+  opacity: 1;
+  transform: scale(1);
+}
+.apps-enter-active {
+  transition: all 400ms $easing-easeOutBack;
 }
 </style>

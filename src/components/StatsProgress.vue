@@ -1,29 +1,76 @@
 <template>
   <div :class="'stats-progress ' + type">
-    <div class="stats-progress__container">
-      <div v-for="stat in stats" :key="stat.key" @click="viewTable(stat.key)" class="stats-progress__item" :style="'width: '+ stat.percentage +'%;'"></div>
-    </div>
+    <transition-group 
+      tag="div"
+      class="stats-progress__container"
+      @before-enter="beforeEnterItem"
+      @enter="enterItem"
+      appear
+    >
+      <div v-for="(stat, index) in stats" :key="stat.key" @click="viewTable(stat.key)" :data-index="index" class="stats-progress__item" :style="'width: '+ stat.percentage +'%;'"></div>
+    </transition-group>
   </div>
   <div v-for="stat in stats" :key="stat.key">
     <div class="stats-progress__table" v-if="display[stat.key]">
       <p class="stats-progress__legend">{{ stat.key }} - {{ stat.percentage }}%</p>
-      <div class="stats-progress__inner">
-        <div v-for="item in stat.item" :key="item.name" class="stats-progress__cell">
+      <transition-group
+        tag="div"
+        class="stats-progress__inner"
+        @before-enter="beforeEnterCell"
+        @enter="enterCell"
+        appear
+      >
+        <div v-for="(item, index) in stat.item" :key="index" :data-index="index" class="stats-progress__cell">
           <div class="stats-progress__cell__left">
             <img class="stats-progress__icon" :src="item.icon" alt="">
             <span class="stats-progress__name">{{ item.name }}</span>
           </div>
           <span class="stats-progress__rarity">{{ item.rarity }}</span>
         </div>
-      </div>
+      </transition-group>
     </div>
   </div>
   <p class="stats-progress__hint" v-if="!isTableDisplay">Click anywhere on the graph above</p>
 </template>
 
 <script>
+import gsap from 'gsap'
+
 export default {
   props: ['type', 'stats'],
+  setup() {
+    const beforeEnterItem = (el) => {
+      el.style.transform = 'scaleX(0)'
+    }
+
+    const enterItem = (el, done) => {
+      gsap.to(el, {
+        transform: 'scaleX(1)',
+        duration: .2,
+        onComplete: done,
+        delay: el.dataset.index * .2,
+        ease: 'linear'
+      })
+    }
+
+    const beforeEnterCell = (el) => {
+      el.style.opacity = 0
+      el.style.transform = 'scale(.2)'
+    }
+
+    const enterCell = (el, done) => {
+      gsap.to(el, {
+        opacity: 1,
+        transform: 'scale(1)',
+        duration: .4,
+        onComplete: done,
+        delay: el.dataset.index * .05,
+        ease: 'Back.easeOut.config(1.4)'
+      })
+    }
+
+    return { beforeEnterItem, enterItem, beforeEnterCell, enterCell }
+  },
   data() {
     return {
       display: {},
@@ -74,6 +121,7 @@ export default {
     display: inline-block;
     height: 100%;
     cursor: pointer;
+    transform-origin: left;
   }
   &__legend {
     text-align: center;
