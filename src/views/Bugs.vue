@@ -12,9 +12,7 @@ import {
   get,
   groupBy,
   map,
-  nth,
   orderBy,
-  split
 } from 'lodash'
 
 export default {

@@ -59,6 +59,10 @@ export default {
     padding-top: 85.71%;
     mask-image: url('../assets/shape-bugs.svg');
   }
+  &.villagers {
+    padding-top: 85.71%;
+    mask-image: url('../assets/shape-villagers.svg');
+  }
   &__container {
     position: absolute;
     top: 0;
@@ -76,11 +80,13 @@ export default {
     margin-top: 1rem;
   }
   &__cell {
-    border-bottom: dashed 1px $color-text;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: .25rem;
+    &:not(:last-child) {
+      border-bottom: dashed 1px $color-text;
+    }
     &__left {
       display: flex;
       align-items: center;
@@ -90,7 +96,7 @@ export default {
     width: 2.5rem;
     height: 2.5rem;
     object-fit: cover;
-    border-radius: 50%;
+    border-radius: 30%;
     margin-right: .5rem;
   }
   &__hint {
@@ -109,6 +115,12 @@ export default {
 @for $i from 1 through 10 {
   .stats-progress.bugs .stats-progress__item:nth-child(#{$i}) {
     background-color: lighten($color-pink, ($i - 1) * 2%);
+  }
+}
+
+@for $i from 1 through 10 {
+  .stats-progress.villagers .stats-progress__item:nth-child(#{$i}) {
+    background-color: lighten($color-orange, ($i - 1) * 2%);
   }
 }
 </style>
